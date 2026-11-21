@@ -282,14 +282,14 @@ export default function RetailAnalyticsView({ setActiveView, onQuickAsk }) {
               <LineChart data={data.oilCorrelation} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                 <XAxis dataKey="salesDate" stroke="#64748b" fontSize={12} tickFormatter={(val) => val ? val.slice(5) : ""} />
-                <YAxis yAxisId="left" stroke="#3b82f6" fontSize={12} />
-                <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" fontSize={12} />
+                <YAxis yAxisId="left" stroke="#3b82f6" fontSize={12} domain={['dataMin - 20', 'dataMax + 20']} />
+                <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" fontSize={12} domain={['dataMin - 5', 'dataMax + 5']} />
                 <Tooltip
                   contentStyle={{ backgroundColor: "#1e293b", borderColor: "#334155", borderRadius: 8, color: "#fff" }}
                 />
                 <Legend />
-                <Line yAxisId="left" type="monotone" dataKey="sales" stroke="#3b82f6" strokeWidth={2} name="Sales" dot={{ r: 4 }} />
-                <Line yAxisId="right" type="monotone" dataKey="oilPrice" stroke="#f59e0b" strokeWidth={2} name="Oil Price ($)" dot={{ r: 4 }} />
+                <Line yAxisId="left" type="monotone" dataKey="sales" stroke="#3b82f6" strokeWidth={2} name="Sales ($)" dot={{ r: 3 }} />
+                <Line yAxisId="right" type="monotone" dataKey="oilPrice" stroke="#f59e0b" strokeWidth={2} name="Oil Price ($/bbl)" dot={{ r: 3 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
