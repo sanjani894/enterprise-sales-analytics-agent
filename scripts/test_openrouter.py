@@ -9,11 +9,14 @@ client = OpenAI(
     api_key=os.getenv("OPENROUTER_API_KEY"),
 )
 
-response = client.chat.completions.create(
-    model="qwen/qwen3.6-35b-a3b",
-    messages=[
-        {"role": "user", "content": "Say hello in one short sentence."}
-    ],
-)
+try:
+    response = client.chat.completions.create(
+        model="liquid/lfm-2.5-2.6b:free",
+        messages=[{"role": "user", "content": "Hello! Reply in 1 short sentence."}]
+    )
+    print("\n--- Connection Success ---")
+    print(response.choices[0].message.content)
+except Exception as e:
+    print("\n--- Error ---")
+    print(e)
 
-print(response.choices[0].message.content)

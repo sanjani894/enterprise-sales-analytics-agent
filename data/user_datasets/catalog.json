@@ -1,0 +1,662 @@
+{
+  "ds_164a8052": {
+    "id": "ds_164a8052",
+    "name": "Student Performance 2026",
+    "original_filename": "student_performance.csv",
+    "file_type": "CSV",
+    "size_bytes": 540,
+    "rows": 8,
+    "columns": 7,
+    "column_names": [
+      "student_id",
+      "student_name",
+      "department",
+      "marks",
+      "attendance_pct",
+      "grade",
+      "admission_date"
+    ],
+    "schema": {
+      "student_id": "INTEGER",
+      "student_name": "TEXT",
+      "department": "TEXT",
+      "marks": "REAL",
+      "attendance_pct": "REAL",
+      "grade": "TEXT",
+      "admission_date": "TEXT"
+    },
+    "schema_text": "Table 'dataset' has columns:\n  student_id INTEGER (e.g., 1001, 1002, 1003)\n  student_name TEXT (e.g., Alice Smith, Bob Jones, Charlie Brown)\n  department TEXT (e.g., Computer Science, Electrical Eng, Computer Science)\n  marks REAL (e.g., 88.5, 74.0, 92.0)\n  attendance_pct REAL (e.g., 94.0, 82.0, 98.0)\n  grade TEXT (e.g., A, B, A)\n  admission_date TEXT (e.g., 2023-09-01, 2023-09-01, 2023-09-01)",
+    "numerical_columns": [
+      "student_id",
+      "marks",
+      "attendance_pct"
+    ],
+    "categorical_columns": [
+      "student_name",
+      "department",
+      "grade",
+      "admission_date"
+    ],
+    "date_columns": [],
+    "text_columns": [],
+    "column_details": {
+      "student_id": {
+        "sql_type": "INTEGER",
+        "semantic_type": "numerical",
+        "null_count": 0,
+        "unique_count": 8,
+        "sample_values": [
+          "1001",
+          "1002",
+          "1003",
+          "1004",
+          "1005"
+        ],
+        "min": 1001.0,
+        "max": 1008.0,
+        "mean": 1004.5
+      },
+      "student_name": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 8,
+        "sample_values": [
+          "Alice Smith",
+          "Bob Jones",
+          "Charlie Brown",
+          "Diana Prince",
+          "Evan Wright"
+        ]
+      },
+      "department": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 3,
+        "sample_values": [
+          "Computer Science",
+          "Electrical Eng",
+          "Computer Science",
+          "Mechanical Eng",
+          "Computer Science"
+        ]
+      },
+      "marks": {
+        "sql_type": "REAL",
+        "semantic_type": "numerical",
+        "null_count": 0,
+        "unique_count": 8,
+        "sample_values": [
+          "88.5",
+          "74.0",
+          "92.0",
+          "68.5",
+          "95.0"
+        ],
+        "min": 68.5,
+        "max": 95.0,
+        "mean": 83.0
+      },
+      "attendance_pct": {
+        "sql_type": "REAL",
+        "semantic_type": "numerical",
+        "null_count": 0,
+        "unique_count": 8,
+        "sample_values": [
+          "94.0",
+          "82.0",
+          "98.0",
+          "75.0",
+          "99.0"
+        ],
+        "min": 75.0,
+        "max": 99.0,
+        "mean": 88.88
+      },
+      "grade": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 3,
+        "sample_values": [
+          "A",
+          "B",
+          "A",
+          "C",
+          "A"
+        ]
+      },
+      "admission_date": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 1,
+        "sample_values": [
+          "2023-09-01",
+          "2023-09-01",
+          "2023-09-01",
+          "2023-09-01",
+          "2023-09-01"
+        ]
+      }
+    },
+    "created_at": "2026-11-05 19:37",
+    "status": "Ready",
+    "type": "SQLite (Isolated)",
+    "db_path": "c:\\Users\\pc\\Desktop\\Projects\\retail-sales-chatbot\\data\\user_datasets\\ds_164a8052.db",
+    "preview": {
+      "columns": [
+        "student_id",
+        "student_name",
+        "department",
+        "marks",
+        "attendance_pct",
+        "grade",
+        "admission_date"
+      ],
+      "rows": [
+        {
+          "student_id": 1001,
+          "student_name": "Alice Smith",
+          "department": "Computer Science",
+          "marks": 88.5,
+          "attendance_pct": 94.0,
+          "grade": "A",
+          "admission_date": "2023-09-01"
+        },
+        {
+          "student_id": 1002,
+          "student_name": "Bob Jones",
+          "department": "Electrical Eng",
+          "marks": 74.0,
+          "attendance_pct": 82.0,
+          "grade": "B",
+          "admission_date": "2023-09-01"
+        },
+        {
+          "student_id": 1003,
+          "student_name": "Charlie Brown",
+          "department": "Computer Science",
+          "marks": 92.0,
+          "attendance_pct": 98.0,
+          "grade": "A",
+          "admission_date": "2023-09-01"
+        },
+        {
+          "student_id": 1004,
+          "student_name": "Diana Prince",
+          "department": "Mechanical Eng",
+          "marks": 68.5,
+          "attendance_pct": 75.0,
+          "grade": "C",
+          "admission_date": "2023-09-01"
+        },
+        {
+          "student_id": 1005,
+          "student_name": "Evan Wright",
+          "department": "Computer Science",
+          "marks": 95.0,
+          "attendance_pct": 99.0,
+          "grade": "A",
+          "admission_date": "2023-09-01"
+        },
+        {
+          "student_id": 1006,
+          "student_name": "Fiona Gallagher",
+          "department": "Electrical Eng",
+          "marks": 81.5,
+          "attendance_pct": 88.0,
+          "grade": "B",
+          "admission_date": "2023-09-01"
+        },
+        {
+          "student_id": 1007,
+          "student_name": "George Clark",
+          "department": "Mechanical Eng",
+          "marks": 79.0,
+          "attendance_pct": 84.0,
+          "grade": "B",
+          "admission_date": "2023-09-01"
+        },
+        {
+          "student_id": 1008,
+          "student_name": "Hannah Abbott",
+          "department": "Electrical Eng",
+          "marks": 85.5,
+          "attendance_pct": 91.0,
+          "grade": "A",
+          "admission_date": "2023-09-01"
+        }
+      ]
+    }
+  },
+  "ds_b9a28d7f": {
+    "id": "ds_b9a28d7f",
+    "name": "Executive & Staff Salaries",
+    "original_filename": "employee_salaries.xlsx",
+    "file_type": "XLSX",
+    "size_bytes": 5292,
+    "rows": 6,
+    "columns": 7,
+    "column_names": [
+      "emp_id",
+      "full_name",
+      "department",
+      "role",
+      "salary",
+      "rating",
+      "hire_date"
+    ],
+    "schema": {
+      "emp_id": "INTEGER",
+      "full_name": "TEXT",
+      "department": "TEXT",
+      "role": "TEXT",
+      "salary": "INTEGER",
+      "rating": "REAL",
+      "hire_date": "TEXT"
+    },
+    "schema_text": "Table 'dataset' has columns:\n  emp_id INTEGER (e.g., 201, 202, 203)\n  full_name TEXT (e.g., John Miller, Sarah Connor, Bruce Wayne)\n  department TEXT (e.g., Engineering, Product, Executive)\n  role TEXT (e.g., Software Architect, Product Manager, CEO)\n  salary INTEGER (e.g., 135000, 115000, 240000)\n  rating REAL (e.g., 4.8, 4.6, 5.0)\n  hire_date TEXT (e.g., 2020-03-15, 2021-06-20, 2018-01-10)",
+    "numerical_columns": [
+      "emp_id",
+      "salary",
+      "rating"
+    ],
+    "categorical_columns": [
+      "full_name",
+      "department",
+      "role",
+      "hire_date"
+    ],
+    "date_columns": [],
+    "text_columns": [],
+    "column_details": {
+      "emp_id": {
+        "sql_type": "INTEGER",
+        "semantic_type": "numerical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "201",
+          "202",
+          "203",
+          "204",
+          "205"
+        ],
+        "min": 201.0,
+        "max": 206.0,
+        "mean": 203.5
+      },
+      "full_name": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "John Miller",
+          "Sarah Connor",
+          "Bruce Wayne",
+          "Clark Kent",
+          "Peter Parker"
+        ]
+      },
+      "department": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 5,
+        "sample_values": [
+          "Engineering",
+          "Product",
+          "Executive",
+          "Marketing",
+          "Research"
+        ]
+      },
+      "role": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "Software Architect",
+          "Product Manager",
+          "CEO",
+          "Content Lead",
+          "Data Scientist"
+        ]
+      },
+      "salary": {
+        "sql_type": "INTEGER",
+        "semantic_type": "numerical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "135000",
+          "115000",
+          "240000",
+          "85000",
+          "120000"
+        ],
+        "min": 85000.0,
+        "max": 250000.0,
+        "mean": 157500.0
+      },
+      "rating": {
+        "sql_type": "REAL",
+        "semantic_type": "numerical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "4.8",
+          "4.6",
+          "5.0",
+          "4.2",
+          "4.7"
+        ],
+        "min": 4.2,
+        "max": 5.0,
+        "mean": 4.7
+      },
+      "hire_date": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "2020-03-15",
+          "2021-06-20",
+          "2018-01-10",
+          "2022-11-05",
+          "2021-02-14"
+        ]
+      }
+    },
+    "created_at": "2026-11-05 19:37",
+    "status": "Ready",
+    "type": "SQLite (Isolated)",
+    "db_path": "c:\\Users\\pc\\Desktop\\Projects\\retail-sales-chatbot\\data\\user_datasets\\ds_b9a28d7f.db",
+    "preview": {
+      "columns": [
+        "emp_id",
+        "full_name",
+        "department",
+        "role",
+        "salary",
+        "rating",
+        "hire_date"
+      ],
+      "rows": [
+        {
+          "emp_id": 201,
+          "full_name": "John Miller",
+          "department": "Engineering",
+          "role": "Software Architect",
+          "salary": 135000,
+          "rating": 4.8,
+          "hire_date": "2020-03-15"
+        },
+        {
+          "emp_id": 202,
+          "full_name": "Sarah Connor",
+          "department": "Product",
+          "role": "Product Manager",
+          "salary": 115000,
+          "rating": 4.6,
+          "hire_date": "2021-06-20"
+        },
+        {
+          "emp_id": 203,
+          "full_name": "Bruce Wayne",
+          "department": "Executive",
+          "role": "CEO",
+          "salary": 240000,
+          "rating": 5.0,
+          "hire_date": "2018-01-10"
+        },
+        {
+          "emp_id": 204,
+          "full_name": "Clark Kent",
+          "department": "Marketing",
+          "role": "Content Lead",
+          "salary": 85000,
+          "rating": 4.2,
+          "hire_date": "2022-11-05"
+        },
+        {
+          "emp_id": 205,
+          "full_name": "Peter Parker",
+          "department": "Research",
+          "role": "Data Scientist",
+          "salary": 120000,
+          "rating": 4.7,
+          "hire_date": "2021-02-14"
+        },
+        {
+          "emp_id": 206,
+          "full_name": "Tony Stark",
+          "department": "Executive",
+          "role": "CTO",
+          "salary": 250000,
+          "rating": 4.9,
+          "hire_date": "2017-08-01"
+        }
+      ]
+    }
+  },
+  "ds_7628810b": {
+    "id": "ds_7628810b",
+    "name": "employee_salaries",
+    "original_filename": "employee_salaries.xlsx",
+    "file_type": "XLSX",
+    "size_bytes": 5292,
+    "rows": 6,
+    "columns": 7,
+    "column_names": [
+      "emp_id",
+      "full_name",
+      "department",
+      "role",
+      "salary",
+      "rating",
+      "hire_date"
+    ],
+    "schema": {
+      "emp_id": "INTEGER",
+      "full_name": "TEXT",
+      "department": "TEXT",
+      "role": "TEXT",
+      "salary": "INTEGER",
+      "rating": "REAL",
+      "hire_date": "TEXT"
+    },
+    "schema_text": "Table 'dataset' has columns:\n  emp_id INTEGER (e.g., 201, 202, 203)\n  full_name TEXT (e.g., John Miller, Sarah Connor, Bruce Wayne)\n  department TEXT (e.g., Engineering, Product, Executive)\n  role TEXT (e.g., Software Architect, Product Manager, CEO)\n  salary INTEGER (e.g., 135000, 115000, 240000)\n  rating REAL (e.g., 4.8, 4.6, 5.0)\n  hire_date TEXT (e.g., 2020-03-15, 2021-06-20, 2018-01-10)",
+    "numerical_columns": [
+      "emp_id",
+      "salary",
+      "rating"
+    ],
+    "categorical_columns": [
+      "full_name",
+      "department",
+      "role",
+      "hire_date"
+    ],
+    "date_columns": [],
+    "text_columns": [],
+    "column_details": {
+      "emp_id": {
+        "sql_type": "INTEGER",
+        "semantic_type": "numerical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "201",
+          "202",
+          "203",
+          "204",
+          "205"
+        ],
+        "min": 201.0,
+        "max": 206.0,
+        "mean": 203.5
+      },
+      "full_name": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "John Miller",
+          "Sarah Connor",
+          "Bruce Wayne",
+          "Clark Kent",
+          "Peter Parker"
+        ]
+      },
+      "department": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 5,
+        "sample_values": [
+          "Engineering",
+          "Product",
+          "Executive",
+          "Marketing",
+          "Research"
+        ]
+      },
+      "role": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "Software Architect",
+          "Product Manager",
+          "CEO",
+          "Content Lead",
+          "Data Scientist"
+        ]
+      },
+      "salary": {
+        "sql_type": "INTEGER",
+        "semantic_type": "numerical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "135000",
+          "115000",
+          "240000",
+          "85000",
+          "120000"
+        ],
+        "min": 85000.0,
+        "max": 250000.0,
+        "mean": 157500.0
+      },
+      "rating": {
+        "sql_type": "REAL",
+        "semantic_type": "numerical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "4.8",
+          "4.6",
+          "5.0",
+          "4.2",
+          "4.7"
+        ],
+        "min": 4.2,
+        "max": 5.0,
+        "mean": 4.7
+      },
+      "hire_date": {
+        "sql_type": "TEXT",
+        "semantic_type": "categorical",
+        "null_count": 0,
+        "unique_count": 6,
+        "sample_values": [
+          "2020-03-15",
+          "2021-06-20",
+          "2018-01-10",
+          "2022-11-05",
+          "2021-02-14"
+        ]
+      }
+    },
+    "created_at": "2026-11-22 02:18",
+    "status": "Ready",
+    "type": "SQLite (Isolated)",
+    "db_path": "C:\\Users\\pc\\Desktop\\Projects\\retail-sales-chatbot\\data\\user_datasets\\ds_7628810b.db",
+    "preview": {
+      "columns": [
+        "emp_id",
+        "full_name",
+        "department",
+        "role",
+        "salary",
+        "rating",
+        "hire_date"
+      ],
+      "rows": [
+        {
+          "emp_id": 201,
+          "full_name": "John Miller",
+          "department": "Engineering",
+          "role": "Software Architect",
+          "salary": 135000,
+          "rating": 4.8,
+          "hire_date": "2020-03-15"
+        },
+        {
+          "emp_id": 202,
+          "full_name": "Sarah Connor",
+          "department": "Product",
+          "role": "Product Manager",
+          "salary": 115000,
+          "rating": 4.6,
+          "hire_date": "2021-06-20"
+        },
+        {
+          "emp_id": 203,
+          "full_name": "Bruce Wayne",
+          "department": "Executive",
+          "role": "CEO",
+          "salary": 240000,
+          "rating": 5.0,
+          "hire_date": "2018-01-10"
+        },
+        {
+          "emp_id": 204,
+          "full_name": "Clark Kent",
+          "department": "Marketing",
+          "role": "Content Lead",
+          "salary": 85000,
+          "rating": 4.2,
+          "hire_date": "2022-11-05"
+        },
+        {
+          "emp_id": 205,
+          "full_name": "Peter Parker",
+          "department": "Research",
+          "role": "Data Scientist",
+          "salary": 120000,
+          "rating": 4.7,
+          "hire_date": "2021-02-14"
+        },
+        {
+          "emp_id": 206,
+          "full_name": "Tony Stark",
+          "department": "Executive",
+          "role": "CTO",
+          "salary": 250000,
+          "rating": 4.9,
+          "hire_date": "2017-08-01"
+        }
+      ]
+    }
+  }
+}

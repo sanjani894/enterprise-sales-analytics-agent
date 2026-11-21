@@ -1,15 +1,17 @@
+import os
+import psycopg2
 import pandas as pd
-df = pd.read_csv("data/raw/train.csv")
+from dotenv import load_dotenv
 
-print("\nThe single highest-selling row:\n", df.sort_values("sales", ascending=False).head(1))
+load_dotenv()
 
+conn = psycopg2.connect(os.getenv("DATABASE_URL"))
+df = pd.read_sql("SELECT * FROM sales LIMIT 1000;", conn)
+conn.close()
 
-# print("Shape (rows, columns):", df.shape)
-# print("\nColumn data types:\n", df.dtypes)
-# print("\nFirst 5 rows:\n", df.head())
-# print("\nDate range:", df["date"].min(), "to", df["date"].max())
-# print("\nNumber of unique stores:", df["store_nbr"].nunique())
-# print("\nNumber of unique product families:", df["family"].nunique())
-# print("\nProduct families:\n", df["family"].unique())
-# print("\nSales column summary stats:\n", df["sales"].describe())
-# print("\nAny missing values?\n", df.isnull().sum())
+print("\n--- Sales Sample Data ---")
+print(df.head())
+
+print("\n--- Highest Selling Entry ---")
+print(df.sort_values("sales", ascending=False).head(1))
+

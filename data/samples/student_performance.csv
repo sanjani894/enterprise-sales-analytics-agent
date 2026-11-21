@@ -1,0 +1,9 @@
+student_id,student_name,department,marks,attendance_pct,grade,admission_date
+1001,Alice Smith,Computer Science,88.5,94.0,A,2023-09-01
+1002,Bob Jones,Electrical Eng,74.0,82.0,B,2023-09-01
+1003,Charlie Brown,Computer Science,92.0,98.0,A,2023-09-01
+1004,Diana Prince,Mechanical Eng,68.5,75.0,C,2023-09-01
+1005,Evan Wright,Computer Science,95.0,99.0,A,2023-09-01
+1006,Fiona Gallagher,Electrical Eng,81.5,88.0,B,2023-09-01
+1007,George Clark,Mechanical Eng,79.0,84.0,B,2023-09-01
+1008,Hannah Abbott,Electrical Eng,85.5,91.0,A,2023-09-01

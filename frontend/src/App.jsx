@@ -1,109 +1,216 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import OverviewView from "./components/OverviewView";
+import RetailAnalyticsView from "./components/RetailAnalyticsView";
+import UploadDatasetView from "./components/UploadDatasetView";
+import MyDatasetsView from "./components/MyDatasetsView";
+import AiAssistantView from "./components/AiAssistantView";
+import ComparisonsInsightsView from "./components/ComparisonsInsightsView";
+import DatasetPreviewModal from "./components/DatasetPreviewModal";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
-function formatDetails(details) {
-  const lines = [`In scope: ${details.in_scope}`];
-  if (details.plan) lines.push(`Plan: ${details.plan}`);
-  if (details.sql) lines.push(`SQL: ${details.sql}`);
-  if (details.verified !== null && details.verified !== undefined) lines.push(`Verified: ${details.verified}`);
-  lines.push(`Attempts: ${details.attempts}`);
-  return lines.join("\n");
-}
+const DEFAULT_DATASETS = [
+  {
+    id: "retail",
+    name: "Retail Sales (Ecuador Grocery)",
+    type: "PostgreSQL (Neon)",
+    rows: 417,
+    columns: 16,
+    status: "Ready",
+    created_at: "Built-in Neon DB",
+    schema: {
+      "stores.store_nbr": "SMALLINT",
+      "stores.city": "VARCHAR(50)",
+      "stores.state": "VARCHAR(50)",
+      "stores.type": "VARCHAR(1)",
+      "stores.cluster": "SMALLINT",
+      "sales.sales": "NUMERIC(10,3)",
+      "sales.family": "VARCHAR(50)",
+      "oil_prices.dcoilwtico": "NUMERIC(6,2)",
+      "transactions.transactions": "INTEGER",
+      "holidays.type": "VARCHAR(20)",
+    },
+  },
+];
 
-function App() {
-  const [question, setQuestion] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [expanded, setExpanded] = useState({});
+const VIEW_METADATA = {
+  overview: {
+    title: "Executive Overview",
+    desc: "Cross-dataset intelligence, activity logs, and system metrics.",
+  },
+  retail: {
+    title: "Retail Sales Analytics",
+    desc: "Built-in Neon PostgreSQL exploration: stores, oil prices, transactions & product families.",
+  },
+  upload: {
+    title: "Upload Custom Dataset",
+    desc: "Upload CSV or Excel spreadsheets for automatic schema profiling and dynamic analysis.",
+  },
+  datasets: {
+    title: "Dataset Catalog",
+    desc: "Manage active datasets, view metadata schemas, and switch analysis scope.",
+  },
+  assistant: {
+    title: "AI Data Assistant",
+    desc: "LangGraph-powered Text-to-SQL conversational agent with verification and explainability.",
+  },
+  insights: {
+    title: "Comparisons & AI Insights",
+    desc: "Data-grounded trend summaries, correlation patterns, and strategic recommendations.",
+  },
+};
 
-  function toggleDetails(index) {
-    setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
+export default function App() {
+  const [activeView, setActiveView] = useState("overview");
+  const [datasets, setDatasets] = useState(DEFAULT_DATASETS);
+  const [selectedDatasetId, setSelectedDatasetId] = useState("retail");
+  const [backendConnected, setBackendConnected] = useState(true);
+  const [prefilledPrompt, setPrefilledPrompt] = useState("");
+  const [previewDataset, setPreviewDataset] = useState(null);
+
+  // Check backend health & fetch datasets
+  useEffect(() => {
+    async function checkHealthAndLoadDatasets() {
+      try {
+        const healthRes = await fetch(`${API_URL}/`);
+        if (healthRes.ok) {
+          setBackendConnected(true);
+        } else {
+          setBackendConnected(false);
+        }
+
+        const dsRes = await fetch(`${API_URL}/api/datasets`);
+        if (dsRes.ok) {
+          const list = await dsRes.json();
+          if (Array.isArray(list) && list.length > 0) {
+            setDatasets(list);
+          }
+        }
+      } catch (err) {
+        // Backend might be offline or starting up
+        setBackendConnected(false);
+      }
+    }
+
+    checkHealthAndLoadDatasets();
+    const interval = setInterval(checkHealthAndLoadDatasets, 15000);
+    return () => clearInterval(interval);
+  }, []);
+
+  function handleDatasetUploaded(newDataset) {
+    setDatasets((prev) => {
+      const exists = prev.some((d) => d.id === newDataset.id);
+      if (exists) {
+        return prev.map((d) => (d.id === newDataset.id ? newDataset : d));
+      }
+      return [...prev, newDataset];
+    });
+    setSelectedDatasetId(newDataset.id);
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    if (!question.trim()) return;
-
-    const currentQuestion = question;
-    setMessages((prev) => [...prev, { role: "user", text: currentQuestion }]);
-    setQuestion("");
-    setLoading(true);
-
+  async function handleDeleteDataset(datasetId) {
     try {
-      const response = await fetch(`${API_URL}/chat`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: currentQuestion, history: messages.slice(-6) }),
-      });
-      const data = await response.json();
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "bot",
-          text: data.answer,
-          details: {
-            in_scope: data.in_scope,
-            plan: data.plan,
-            sql: data.sql,
-            verified: data.verified,
-            attempts: data.attempts,
-          },
-        },
-      ]);
+      await fetch(`${API_URL}/api/datasets/${datasetId}`, { method: "DELETE" });
     } catch (err) {
-      setMessages((prev) => [...prev, { role: "bot", text: "Something went wrong. Is the backend running?" }]);
-    } finally {
-      setLoading(false);
+      // Local fallback
+    }
+    setDatasets((prev) => prev.filter((d) => d.id !== datasetId));
+    if (selectedDatasetId === datasetId) {
+      setSelectedDatasetId("retail");
     }
   }
 
+  function handleQuickAsk(promptText) {
+    setPrefilledPrompt(promptText);
+  }
+
+  const activeMeta = VIEW_METADATA[activeView] || VIEW_METADATA.overview;
+  const currentDataset = datasets.find((d) => d.id === selectedDatasetId) || datasets[0];
+
   return (
-    <div style={{ maxWidth: 600, margin: "40px auto", fontFamily: "sans-serif" }}>
-      <h1>Retail Sales Chatbot</h1>
-      <div style={{ border: "1px solid #ccc", borderRadius: 8, padding: 16, minHeight: 300, marginBottom: 16 }}>
-        {messages.map((m, i) => (
-          <div key={i} style={{ margin: "8px 0", textAlign: m.role === "user" ? "right" : "left" }}>
-            <span style={{
-              display: "inline-block",
-              padding: "8px 12px",
-              borderRadius: 12,
-              background: m.role === "user" ? "#0070f3" : "#eee",
-              color: m.role === "user" ? "white" : "black",
-              maxWidth: "80%",
-            }}>
-              {m.text}
-            </span>
-            {m.role === "bot" && m.details && (
-              <div>
-                <button
-                  onClick={() => toggleDetails(i)}
-                  style={{ display: "block", fontSize: 12, background: "none", border: "none", color: "#0070f3", cursor: "pointer", padding: "4px 0" }}
-                >
-                  {expanded[i] ? "Hide details" : "Show details"}
-                </button>
-                {expanded[i] && (
-                  <pre style={{ fontSize: 12, background: "#f5f5f5", padding: 8, borderRadius: 6, overflowX: "auto", whiteSpace: "pre-wrap" }}>
-                    {formatDetails(m.details)}
-                  </pre>
-                )}
-              </div>
-            )}
-          </div>
-        ))}
-        {loading && <div style={{ color: "#888" }}>Thinking...</div>}
-      </div>
-      <form onSubmit={handleSubmit} style={{ display: "flex", gap: 8 }}>
-        <input
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          placeholder="Ask about sales, stores, oil prices, holidays..."
-          style={{ flex: 1, padding: 8 }}
+    <div className="app-container">
+      {/* Sidebar Navigation */}
+      <Sidebar
+        activeView={activeView}
+        setActiveView={setActiveView}
+        currentDatasetName={currentDataset?.name}
+        isCustomDataset={selectedDatasetId !== "retail"}
+      />
+
+      {/* Main App Content */}
+      <div className="main-wrapper">
+        <Header
+          activeViewTitle={activeMeta.title}
+          activeViewDesc={activeMeta.desc}
+          datasets={datasets}
+          selectedDatasetId={selectedDatasetId}
+          onSelectDataset={setSelectedDatasetId}
+          backendConnected={backendConnected}
         />
-        <button type="submit" disabled={loading}>Send</button>
-      </form>
+
+        <main className="content-area">
+          {activeView === "overview" && (
+            <OverviewView
+              datasets={datasets}
+              setActiveView={setActiveView}
+              onSelectDataset={setSelectedDatasetId}
+              selectedDatasetId={selectedDatasetId}
+            />
+          )}
+
+          {activeView === "retail" && (
+            <RetailAnalyticsView
+              setActiveView={setActiveView}
+              onQuickAsk={handleQuickAsk}
+            />
+          )}
+
+          {activeView === "upload" && (
+            <UploadDatasetView
+              onDatasetUploaded={handleDatasetUploaded}
+              setActiveView={setActiveView}
+            />
+          )}
+
+          {activeView === "datasets" && (
+            <MyDatasetsView
+              datasets={datasets}
+              selectedDatasetId={selectedDatasetId}
+              onSelectDataset={setSelectedDatasetId}
+              onDeleteDataset={handleDeleteDataset}
+              onPreviewDataset={setPreviewDataset}
+              setActiveView={setActiveView}
+            />
+          )}
+
+          {activeView === "assistant" && (
+            <AiAssistantView
+              selectedDatasetId={selectedDatasetId}
+              onSelectDataset={setSelectedDatasetId}
+              datasets={datasets}
+              prefilledPrompt={prefilledPrompt}
+              clearPrefilledPrompt={() => setPrefilledPrompt("")}
+            />
+          )}
+
+          {activeView === "insights" && (
+            <ComparisonsInsightsView
+              selectedDatasetId={selectedDatasetId}
+              datasets={datasets}
+            />
+          )}
+        </main>
+      </div>
+
+      {/* Dataset Preview Modal */}
+      {previewDataset && (
+        <DatasetPreviewModal
+          dataset={previewDataset}
+          onClose={() => setPreviewDataset(null)}
+        />
+      )}
     </div>
   );
 }
-
-export default App;
