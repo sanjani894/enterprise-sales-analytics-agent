@@ -35,43 +35,88 @@ export default function RetailAnalyticsView({ setActiveView, onQuickAsk }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     kpis: {
-      totalSales: 418320.5,
-      avgOilPrice: 43.25,
-      totalTransactions: 142850,
+      totalSales: 7292.54,
+      avgOilPrice: 57.9,
+      totalTransactions: 25741,
       activeStores: 3,
+      totalRecords: 417
     },
     salesTrend: [
-      { date: "2015-09", sales: 12500, transactions: 4200 },
-      { date: "2015-10", sales: 18400, transactions: 5100 },
-      { date: "2015-11", sales: 22100, transactions: 6300 },
-      { date: "2015-12", sales: 34900, transactions: 9200 },
-      { date: "2016-01", sales: 24200, transactions: 7100 },
-      { date: "2016-02", sales: 21800, transactions: 6800 },
-      { date: "2016-03", sales: 26500, transactions: 7900 },
-      { date: "2016-04", sales: 28400, transactions: 8400 },
-      { date: "2016-05", sales: 31200, transactions: 8900 },
-      { date: "2016-06", sales: 33800, transactions: 9500 },
+      { date: "2015-08-15", sales: 181.64 },
+      { date: "2015-08-16", sales: 211.95 },
+      { date: "2015-08-17", sales: 199.34 },
+      { date: "2015-08-18", sales: 326.12 },
+      { date: "2015-08-19", sales: 257.73 },
+      { date: "2015-08-20", sales: 290.05 },
+      { date: "2015-08-21", sales: 293.8 },
+      { date: "2015-08-22", sales: 215.98 },
+      { date: "2015-08-23", sales: 128.06 },
+      { date: "2015-08-24", sales: 254.55 },
+      { date: "2015-08-25", sales: 239.1 },
+      { date: "2015-08-26", sales: 222.13 },
+      { date: "2015-08-27", sales: 245.3 },
+      { date: "2015-08-28", sales: 252.33 },
+      { date: "2015-08-29", sales: 310.32 },
+      { date: "2015-08-30", sales: 356.85 },
+      { date: "2015-08-31", sales: 195.9 },
+      { date: "2015-09-01", sales: 254.85 },
+      { date: "2015-09-02", sales: 289.9 },
+      { date: "2015-09-03", sales: 110.83 },
+      { date: "2015-09-04", sales: 137.04 },
+      { date: "2015-09-05", sales: 257.64 },
+      { date: "2015-09-06", sales: 252.03 },
+      { date: "2015-09-07", sales: 239.93 },
+      { date: "2015-09-08", sales: 194.55 },
+      { date: "2015-09-09", sales: 204.74 },
+      { date: "2015-09-10", sales: 225.55 },
+      { date: "2015-09-11", sales: 128.69 },
+      { date: "2015-09-12", sales: 195.96 },
+      { date: "2015-09-13", sales: 174.02 },
+      { date: "2015-09-14", sales: 211.43 },
+      { date: "2015-09-15", sales: 234.23 }
     ],
     storePerformance: [
-      { store: "Store 1 (Quito)", sales: 185400, transactions: 58200 },
-      { store: "Store 2 (Guayaquil)", sales: 142100, transactions: 49100 },
-      { store: "Store 3 (Cuenca)", sales: 90820, transactions: 35550 },
+      { store: "Store 1 (Quito)", store_nbr: 1, city: "Quito", sales: 2507.13, transactions: 8049 },
+      { store: "Store 2 (Guayaquil)", store_nbr: 2, city: "Guayaquil", sales: 2397.24, transactions: 8549 },
+      { store: "Store 3 (Cuenca)", store_nbr: 3, city: "Cuenca", sales: 2388.17, transactions: 9143 }
     ],
     productFamilies: [
-      { family: "GROCERY I", sales: 128400 },
-      { family: "BEVERAGES", sales: 89200 },
-      { family: "CLEANING", sales: 54100 },
-      { family: "PRODUCE", sales: 48900 },
-      { family: "DAIRY", sales: 41200 },
-      { family: "MEATS", sales: 31500 },
+      { family: "USB-C Cable (103)", family_id: "103", sales: 2661.96 },
+      { family: "Smartphone Stand (102)", family_id: "102", sales: 2365.28 },
+      { family: "Wireless Headphones (101)", family_id: "101", sales: 2265.3 }
     ],
     oilCorrelation: [
-      { date: "Sep 15", sales: 1250, oilPrice: 45.2 },
-      { date: "Nov 15", sales: 2210, oilPrice: 42.8 },
-      { date: "Jan 16", sales: 2420, oilPrice: 31.7 },
-      { date: "Mar 16", sales: 2650, oilPrice: 37.5 },
-      { date: "May 16", sales: 3120, oilPrice: 46.8 },
-      { date: "Jul 16", sales: 3380, oilPrice: 44.7 },
+      { point: "Day 1", sales: 181.64, oilPrice: 56.91, salesDate: "2015-08-15", oilDate: "2024-01-01" },
+      { point: "Day 2", sales: 211.95, oilPrice: 67.53, salesDate: "2015-08-16", oilDate: "2024-01-02" },
+      { point: "Day 3", sales: 199.34, oilPrice: 56.64, salesDate: "2015-08-17", oilDate: "2024-01-03" },
+      { point: "Day 4", sales: 326.12, oilPrice: 58.27, salesDate: "2015-08-18", oilDate: "2024-01-04" },
+      { point: "Day 5", sales: 257.73, oilPrice: 51.49, salesDate: "2015-08-19", oilDate: "2024-01-05" },
+      { point: "Day 6", sales: 290.05, oilPrice: 51.64, salesDate: "2015-08-20", oilDate: "2024-01-06" },
+      { point: "Day 7", sales: 293.8, oilPrice: 51.73, salesDate: "2015-08-21", oilDate: "2024-01-07" },
+      { point: "Day 8", sales: 215.98, oilPrice: 51.87, salesDate: "2015-08-22", oilDate: "2024-01-08" },
+      { point: "Day 9", sales: 128.06, oilPrice: 50.02, salesDate: "2015-08-23", oilDate: "2024-01-09" },
+      { point: "Day 10", sales: 254.55, oilPrice: 51.31, salesDate: "2015-08-24", oilDate: "2024-01-10" },
+      { point: "Day 11", sales: 239.1, oilPrice: 54.74, salesDate: "2015-08-25", oilDate: "2024-01-11" },
+      { point: "Day 12", sales: 222.13, oilPrice: 51.76, salesDate: "2015-08-26", oilDate: "2024-01-12" },
+      { point: "Day 13", sales: 245.3, oilPrice: 56.61, salesDate: "2015-08-27", oilDate: "2024-01-13" },
+      { point: "Day 14", sales: 252.33, oilPrice: 58.63, salesDate: "2015-08-28", oilDate: "2024-01-14" },
+      { point: "Day 15", sales: 310.32, oilPrice: 51.93, salesDate: "2015-08-29", oilDate: "2024-01-15" },
+      { point: "Day 16", sales: 356.85, oilPrice: 61.37, salesDate: "2015-08-30", oilDate: "2024-01-16" },
+      { point: "Day 17", sales: 195.9, oilPrice: 50.05, salesDate: "2015-08-31", oilDate: "2024-01-17" },
+      { point: "Day 18", sales: 254.85, oilPrice: 63.06, salesDate: "2015-09-01", oilDate: "2024-01-18" },
+      { point: "Day 19", sales: 289.9, oilPrice: 63.4, salesDate: "2015-09-02", oilDate: "2024-01-19" },
+      { point: "Day 20", sales: 110.83, oilPrice: 67.14, salesDate: "2015-09-03", oilDate: "2024-01-20" },
+      { point: "Day 21", sales: 137.04, oilPrice: 59.12, salesDate: "2015-09-04", oilDate: "2024-01-21" },
+      { point: "Day 22", sales: 257.64, oilPrice: 68.3, salesDate: "2015-09-05", oilDate: "2024-01-22" },
+      { point: "Day 23", sales: 252.03, oilPrice: 66.02, salesDate: "2015-09-06", oilDate: "2024-01-23" },
+      { point: "Day 24", sales: 239.93, oilPrice: 61.85, salesDate: "2015-09-07", oilDate: "2024-01-24" },
+      { point: "Day 25", sales: 194.55, oilPrice: 53.59, salesDate: "2015-09-08", oilDate: "2024-01-25" },
+      { point: "Day 26", sales: 204.74, oilPrice: 52.91, salesDate: "2015-09-09", oilDate: "2024-01-26" },
+      { point: "Day 27", sales: 225.55, oilPrice: 54.81, salesDate: "2015-09-10", oilDate: "2024-01-27" },
+      { point: "Day 28", sales: 128.69, oilPrice: 67.69, salesDate: "2015-09-11", oilDate: "2024-01-28" },
+      { point: "Day 29", sales: 195.96, oilPrice: 64.54, salesDate: "2015-09-12", oilDate: "2024-01-29" },
+      { point: "Day 30", sales: 174.02, oilPrice: 65.68, salesDate: "2015-09-13", oilDate: "2024-01-30" },
+      { point: "Day 31", sales: 211.43, oilPrice: 54.26, salesDate: "2015-09-14", oilDate: "2024-01-31" }
     ]
   });
 
@@ -229,11 +274,12 @@ export default function RetailAnalyticsView({ setActiveView, onQuickAsk }) {
                 <XAxis dataKey="store" stroke="#64748b" fontSize={12} />
                 <YAxis stroke="#64748b" fontSize={12} />
                 <Tooltip
+                  formatter={(value, name) => name.includes("Sales") ? [`$${Number(value).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, name] : [`${Number(value).toLocaleString()} visits`, name]}
                   contentStyle={{ backgroundColor: "#1e293b", borderColor: "#334155", borderRadius: 8, color: "#fff" }}
                 />
                 <Legend />
-                <Bar dataKey="sales" fill="#10b981" radius={[4, 4, 0, 0]} name="Sales Units" />
-                <Bar dataKey="transactions" fill="#3b82f6" radius={[4, 4, 0, 0]} name="Transactions" />
+                <Bar dataKey="sales" fill="#10b981" radius={[4, 4, 0, 0]} name="Sales ($ Revenue)" />
+                <Bar dataKey="transactions" fill="#3b82f6" radius={[4, 4, 0, 0]} name="Transactions (Footfall / Visits)" />
               </BarChart>
             </ResponsiveContainer>
           </div>
